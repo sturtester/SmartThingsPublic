@@ -41,22 +41,20 @@ metadata {
 	}
 
 	// tile definitions
-	tiles(scale: 2) {
-		multiAttributeTile(name:"power", type: "generic", width: 6, height: 4){
-			tileAttribute("device.power", key: "PRIMARY_CONTROL") {
-				attributeState("default", label:'${currentValue} W')
-			}
-			tileAttribute("device.energy", key: "SECONDARY_CONTROL") {
-				attributeState("default", label:'${currentValue} kWh')
-			}
+	tiles {
+		valueTile("power", "device.power", decoration: "flat") {
+			state "default", label:'${currentValue} W'
 		}
-		standardTile("reset", "device.energy", inactiveLabel: false, decoration: "flat",width: 2, height: 2) {
+		valueTile("energy", "device.energy", decoration: "flat") {
+			state "default", label:'${currentValue} kWh'
+		}
+		standardTile("reset", "device.energy", inactiveLabel: false, decoration: "flat") {
 			state "default", label:'reset kWh', action:"reset"
 		}
-		standardTile("refresh", "device.power", inactiveLabel: false, decoration: "flat",width: 2, height: 2) {
+		standardTile("refresh", "device.power", inactiveLabel: false, decoration: "flat") {
 			state "default", label:'', action:"refresh.refresh", icon:"st.secondary.refresh"
 		}
-		standardTile("configure", "device.power", inactiveLabel: false, decoration: "flat",width: 2, height: 2) {
+		standardTile("configure", "device.power", inactiveLabel: false, decoration: "flat") {
 			state "configure", label:'', action:"configuration.configure", icon:"st.secondary.configure"
 		}
 
